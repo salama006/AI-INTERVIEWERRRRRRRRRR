@@ -19,6 +19,11 @@ export const AVATARS = [
     avatar_id: "Elenora_IT_Sitting_public",
     name: "Elenora Tech Expert",
   },
+  {
+    avatar_id: "Judy_Lawyer_Sitting2_public",
+    name: "Judy Muktar",
+  },
+  
 ];
 
 export const STT_LANGUAGE_LIST = [

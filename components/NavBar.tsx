@@ -1,59 +1,34 @@
 "use client";
 
-import Link from "next/link";
-
-import { GithubIcon, HeyGenLogo } from "./Icons";
+import { useAvatar } from "@/context/AvatarContext";
 
 export default function NavBar() {
+  const { selectedAvatarId, setSelectedAvatarId } = useAvatar();
+
+  const avatars = [
+    { id: "Judy_Lawyer_Sitting2_public", name: "Judy" },
+    { id: "Other_Avatar_123", name: "Alex" },
+  ];
+
   return (
-    <>
-      <div className="flex flex-row justify-between items-center w-[1000px] m-auto p-6">
-        <div className="flex flex-row items-center gap-4">
-          <Link href="https://app.heygen.com/" target="_blank">
-            <HeyGenLogo />
-          </Link>
-          <div className="bg-gradient-to-br from-sky-300 to-indigo-500 bg-clip-text">
-            <p className="text-xl font-semibold text-transparent">
-              HeyGen Interactive Avatar SDK NextJS Demo
-            </p>
-          </div>
-        </div>
-        <div className="flex flex-row items-center gap-6">
-          <Link
-            href="https://labs.heygen.com/interactive-avatar"
-            target="_blank"
-          >
-            Avatars
-          </Link>
-          <Link
-            href="https://docs.heygen.com/reference/list-voices-v2"
-            target="_blank"
-          >
-            Voices
-          </Link>
-          <Link
-            href="https://docs.heygen.com/reference/new-session-copy"
-            target="_blank"
-          >
-            API Docs
-          </Link>
-          <Link
-            href="https://help.heygen.com/en/articles/9182113-interactive-avatar-101-your-ultimate-guide"
-            target="_blank"
-          >
-            Guide
-          </Link>
-          <Link
-            aria-label="Github"
-            className="flex flex-row justify-center gap-1 text-foreground"
-            href="https://github.com/HeyGen-Official/StreamingAvatarSDK"
-            target="_blank"
-          >
-            <GithubIcon className="text-default-500" />
-            SDK
-          </Link>
-        </div>
+    <nav className="p-4 flex justify-between items-center bg-gray-800 text-white">
+      <h1 className="font-bold text-lg">AI Interviewer</h1>
+      <div>
+        <select
+          value={selectedAvatarId ?? ""}
+          onChange={(e) => setSelectedAvatarId(e.target.value)}
+          className="text-black p-2 rounded"
+        >
+          <option value="" disabled>
+            Select an Avatar
+          </option>
+          {avatars.map((a) => (
+            <option key={a.id} value={a.id}>
+              {a.name}
+            </option>
+          ))}
+        </select>
       </div>
-    </>
+    </nav>
   );
 }
